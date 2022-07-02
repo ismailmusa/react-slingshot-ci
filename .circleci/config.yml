@@ -2,12 +2,8 @@
 # See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
 
-# Define a job to be invoked later in a workflow.
-# See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
   build:
-    # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
-    # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
     docker:
       - image: circleci/node:13.8.0
     steps:
@@ -20,16 +16,16 @@ jobs:
     steps:
       - checkout
       - run: npm i
-      - run: npm run test   
+      - run: npm run test
   analyze:
     docker:
       - image: circleci/node:13.8.0
     steps:
       - checkout
-      - run: npm i
-      - run: npm audit  
+      - run: npm audit
+
 workflows:
-  my-workflow:
+  my_workflow:
     jobs:
       - build
       - test:
@@ -37,4 +33,4 @@ workflows:
             - build
       - analyze:
           requires:
-            - test      
+            - test 
